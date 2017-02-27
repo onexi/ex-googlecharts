@@ -9,12 +9,12 @@ var above250k = function(item) {
     return item[1] > 250000; // CORRECT this
 };
 exercise.getSalaries = function() {
-    return exercise.data.data.map( getSalary );
+    return exercise.data.data.map( getSalary ).filter(above250k);
     // CORRECT this to return salaries above 250K
 };
 var run = function run() {
 
-    exercise.salaries = exercise.getSalaries().filter(above250k);    
+    exercise.salaries = exercise.getSalaries();    
 
     // google requires 1st row to describe the data
     exercise.salaries.unshift(['job', 'salary']);
