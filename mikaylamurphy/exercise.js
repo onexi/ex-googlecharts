@@ -5,10 +5,18 @@ var getSalary = function(row) {
     return [row[9], Math.floor(row[18])];
 };
 var above250k = function(item) {
-    return false; // CORRECT this
+    if (item[1] > 250000){
+        return true;
+    } else {
+        return false;
+    };
+    // CORRECT this
 };
 exercise.getSalaries = function() {
-    return []; // CORRECT this to return salaries above 250K
+    var people = exercise.data.data;
+    var earnings = people.map(getSalary);
+    var earnings = earnings.filter(above250k)
+    return earnings; // CORRECT this to return salaries above 250K
 };
 var run = function run() {
 
@@ -18,7 +26,7 @@ var run = function run() {
     // set up type of chart and target of where to draw it
 
     var target = document.getElementById('chart_div');
-    var chart = new google.visualization.BarChart(target);
+    var chart = new google.visualization.PieChart(target);
     //var chart = new google.visualization.PieChart(target);
     drawChart(exercise.salaries, chart);
 };
