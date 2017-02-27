@@ -1,8 +1,8 @@
 {
-    "name": "ex-googlecharts-climate",
-    "description": "ex-googlecharts-climate",
+    "name": "ex-googlecharts",
+    "description": "ex-googlecharts",
     "author": "prof",
-    "keywords": ["ex-googlecharts-climate"],
+    "keywords": ["ex-googlecharts"],
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",

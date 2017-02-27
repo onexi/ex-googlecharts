@@ -1,39 +1,25 @@
 var exercise = {};
+exercise.salaries = [];
 
-//  build dataset
-// -------------------------------------
-var getTemp = function(row) {
-    var time = parseInt(row.date);
-    var year = Math.floor(time / 100);
-    month = time - (year * 100) - 1; // correct this - it is wrong
-    var date = new Date(year, month, 1); // assume its on 1st of the month
-    return [date, Number(row.GISS)];
+var getSalary = function(row) {
+    return [row[9], Math.floor(row[18])];
 };
-exercise.getDateTempSeries = function() {
-
-    return exercise.data.map(getTemp); //  complete this using callback to getTemp
+var above250k = function(item) {
+    return item[1] > 250000; // CORRECT this
 };
-
+exercise.getSalaries = function() {
+    return exercise.data.data.map(getSalary).filter(above250k);
+    //return []; // CORRECT this to return salaries above 250K
+};
 var run = function run() {
-    exercise.dateT = exercise.getDateTempSeries();
 
-    var firstRow = [{
-        label: 'date',
-        id: 'date',
-        type: 'date'
-    }, {
-        label: 'temp',
-        id: 'temp',
-        type: 'number'
-    }];
-
+    exercise.salaries = exercise.getSalaries();
     // google requires 1st row to describe the data
-    exercise.dateT.unshift(firstRow);
-
+    exercise.salaries.unshift(['job', 'salary']);
+    // set up type of chart and target of where to draw it
 
     var target = document.getElementById('chart_div');
-    //var chart = new google.visualization.BarChart(target);
+    var chart = new google.visualization.BarChart(target);
     //var chart = new google.visualization.PieChart(target);
-    var chart = new google.visualization.ScatterChart(target);
-    drawChart(exercise.dateT, chart);
+    drawChart(exercise.salaries, chart);
 };
